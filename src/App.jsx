@@ -24,7 +24,7 @@ const LandingPage = () => {
 
 function App() {
 	return (
-		<Router>
+		<Router basename="/E-PlantShoping">
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/products" element={<ProductList />} />
