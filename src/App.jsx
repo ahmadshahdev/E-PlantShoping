@@ -3,7 +3,7 @@ import './App.css'
 import './Components/AboutUs'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentPage, setCurrentPage] = useState('landing');
 
   return (
     <>

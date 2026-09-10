@@ -1,6 +1,6 @@
-const [currentPage, setCurrentPage] = useState("landing");
 
-function LandingPage() {
+
+function AboutUS() {
 	return (
 		<div className="about-us">
 			<h1 className="company-name">Paradise Nursery</h1>
@@ -26,4 +26,4 @@ function LandingPage() {
 		</div>
 	);
 }
-export default LandingPage;
+export default AboutUS;
