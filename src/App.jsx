@@ -1,23 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import AboutUs from "./AboutUs";
-import Header from "./Header";
+import AboutUs from "./Components/AboutUs";
+import ProductList from "./Components/ProductList";
+import Header from "./Components/Header";
 import "./App.css";
 
-// Updated Placeholders with the Header included
-const PlaceholderProducts = () => (
-	<div>
-		<Header />
-		<div style={{ padding: "50px", textAlign: "center" }}>
-			Product Listing Page (Coming in Module 4)
-		</div>
-	</div>
-);
-
+// Keep the cart placeholder for now
 const PlaceholderCart = () => (
 	<div>
 		<Header />
-		<div style={{ padding: "50px", textAlign: "center" }}>
+		<div style={{ padding: "50px", textAlign: "center", color: "black" }}>
 			Shopping Cart Page (Coming in Module 5)
 		</div>
 	</div>
@@ -42,7 +34,7 @@ function App() {
 		<Router>
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
-				<Route path="/products" element={<PlaceholderProducts />} />
+				<Route path="/products" element={<ProductList />} />
 				<Route path="/cart" element={<PlaceholderCart />} />
 			</Routes>
 		</Router>
