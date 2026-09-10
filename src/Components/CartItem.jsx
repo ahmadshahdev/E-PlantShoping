@@ -1,15 +1,16 @@
+// CartItem.jsx (Revised structure)
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { removeItem, updateQuantity } from "../Redux/CartSlice";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import "./CartItem.css";
 
 const CartItem = () => {
 	const cartItems = useSelector((state) => state.cart.items);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-	// Calculate Total Amount
 	const calculateTotalAmount = () => {
 		return cartItems.reduce(
 			(total, item) => total + item.price * item.quantity,
@@ -17,7 +18,6 @@ const CartItem = () => {
 		);
 	};
 
-	// Calculate Total Quantity for the header summary
 	const calculateTotalItems = () => {
 		return cartItems.reduce((total, item) => total + item.quantity, 0);
 	};
@@ -37,7 +37,6 @@ const CartItem = () => {
 				}),
 			);
 		} else {
-			// If quantity drops below 1, remove the item entirely
 			dispatch(removeItem(item.name));
 		}
 	};
@@ -46,111 +45,115 @@ const CartItem = () => {
 		dispatch(removeItem(item.name));
 	};
 
-	const handleCheckout = () => {
-		alert("Checkout Functionality Coming Soon!");
-	};
-
 	return (
 		<div className="cart-page">
 			<Header />
-
-			<div className="cart-container">
-				<h2 className="cart-title">Your Cart</h2>
+			<div className="main-content elevated-panel cart-dashboard">
+				<h2 className="dashboard-title accent-moss">
+					Your Shopping Cart Summary
+				</h2>
 
 				{cartItems.length === 0 ? (
-					<div className="empty-cart">
-						<p>Your cart is currently empty.</p>
-						<Link to="/products">
-							<button className="continue-shopping-btn">
-								Continue Shopping
-							</button>
+					<div className="empty-state">
+						<p>Your cart is empty.</p>
+						<Link
+							to="/products"
+							className="btn-continue secondary-outline"
+						>
+							Back to Plants
 						</Link>
 					</div>
 				) : (
-					<>
-						<div className="cart-summary-top">
-							<p>
-								Total Items:{" "}
-								<strong>{calculateTotalItems()}</strong>
-							</p>
-							<p>
-								Total Amount:{" "}
-								<strong>${calculateTotalAmount()}</strong>
-							</p>
-						</div>
-
-						<div className="cart-items-list">
-							{cartItems.map((item, index) => (
-								<div className="cart-item-card" key={index}>
+					<div className="cart-content-layout">
+						{/* Left: Cart Items List */}
+						<div className="cart-list">
+							{cartItems.map((item) => (
+								<div
+									className="cart-item-row professional-row"
+									key={item.name}
+								>
 									<img
 										src={item.image}
 										alt={item.name}
-										className="cart-item-image"
+										className="cart-row-image"
 									/>
 
-									<div className="cart-item-details">
-										<h3 className="cart-item-name">
+									<div className="cart-row-details">
+										<h3 className="row-name">
 											{item.name}
 										</h3>
-										<p className="cart-item-price">
+										<p className="row-price">
 											Unit Price: ${item.price}
 										</p>
-										<p className="cart-item-subtotal">
+										<p className="row-subtotal highlight-cost">
 											Subtotal: $
 											{item.price * item.quantity}
 										</p>
+									</div>
 
-										<div className="cart-item-controls">
-											<div className="quantity-controls">
-												<button
-													className="qty-btn"
-													onClick={() =>
-														handleDecrement(item)
-													}
-												>
-													-
-												</button>
-												<span className="qty-display">
-													{item.quantity}
-												</span>
-												<button
-													className="qty-btn"
-													onClick={() =>
-														handleIncrement(item)
-													}
-												>
-													+
-												</button>
-											</div>
-
+									<div className="cart-row-controls">
+										<div className="quantity-controls-block">
 											<button
-												className="delete-btn"
+												className="qty-btn"
 												onClick={() =>
-													handleRemove(item)
+													handleDecrement(item)
 												}
 											>
-												Delete
+												-
+											</button>
+											<span className="qty-display">
+												{item.quantity}
+											</span>
+											<button
+												className="qty-btn"
+												onClick={() =>
+													handleIncrement(item)
+												}
+											>
+												+
 											</button>
 										</div>
+										<button
+											className="btn-delete"
+											onClick={() =>
+												handleRemove(item)
+											} /* Red delete icon */
+										/>
 									</div>
 								</div>
 							))}
 						</div>
 
-						<div className="cart-actions-bottom">
-							<Link to="/products">
-								<button className="continue-shopping-btn">
+						{/* Right: Integrated Summary Card */}
+						<div className="cart-summary professional-card-fixed accent-card">
+							<h3>Order Summary</h3>
+							<div className="summary-list">
+								<div className="summary-item">
+									<p>Total Items:</p>{" "}
+									<strong>{calculateTotalItems()}</strong>
+								</div>
+								<div className="summary-item">
+									<p>Total Cost:</p>{" "}
+									<strong className="highlight-cost">
+										${calculateTotalAmount()}
+									</strong>
+								</div>
+							</div>
+							<div className="summary-actions">
+								<button
+									className="btn-continue secondary-outline"
+									onClick={() => navigate("/products")}
+								>
 									Continue Shopping
 								</button>
-							</Link>
-							<button
-								className="checkout-btn"
-								onClick={handleCheckout}
-							>
-								Checkout
-							</button>
+								<button
+									className="btn-checkout primary-fill" /* Shows "Coming Soon" */
+								>
+									Checkout
+								</button>
+							</div>
 						</div>
-					</>
+					</div>
 				)}
 			</div>
 		</div>

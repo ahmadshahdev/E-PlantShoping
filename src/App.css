@@ -1,60 +1,201 @@
-/* Reset some basic margins */
+:root {
+	--color-primary-bg: #243b35; /* Deep Rich Green */
+	--color-secondary-bg: #f1e9d2; /* Light Cream */
+	--color-panel-bg: #243b35; /* Surface color (or rich textured gradient) */
+	--color-card-bg: #6b8e7b; /* Sage Green (or lighter green accent) */
+
+	--text-main: #ffffff;
+	--text-accent: #b7c9b1;
+	--text-dark: #243b35;
+	--btn-primary-fill: #b7c9b1; /* Light Moss */
+	--btn-primary-text: #243b35; /* Deep Green text */
+	--btn-secondary-outline: #f1e9d2; /* Cream outline/text */
+
+	--accent-counter: #b7c9b1; /* Light Moss badge */
+	--accent-cost: #22c55e; /* Green for total amounts */
+
+	/* Modern Depth */
+	--shadow-panel: 0 10px 30px rgba(0, 0, 0, 0.2);
+	--shadow-card: 0 8px 16px rgba(0, 0, 0, 0.15);
+	--border-radius-main: 12px;
+	--transition-smooth: 0.3s ease;
+}
+
+body {
+	margin: 0;
+	background-color: var(--color-primary-bg);
+	background-image: linear-gradient(135deg, #2a473f 0%, #243b35 100%);
+	color: var(--text-main);
+	font-family:
+		"Poppins", sans-serif; /* Use clean Sans-serif for dynamic elements */
+}
+
+/* Merriweather for Headers and Logo */
+h1,
+h2,
+h3,
+.brand-logo {
+	font-family: "Merriweather", serif;
+	margin-top: 0;
+}
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
 
+/* Update these specific classes in your App.css */
+
 .landing-page {
-	/* This fulfills the background image requirement */
-	background-image: url("./assets/bg-plant.jpg");
+	/* Keep your existing background-image URL */
+	background-image: url("https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=1920");
 	background-size: cover;
 	background-position: center;
-	background-repeat: no-repeat;
+	background-attachment: fixed; /* Gives a slight parallax premium feel */
 	height: 100vh;
 	display: flex;
-	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	color: white;
-	text-align: center;
+	padding: 2rem;
 }
 
 .landing-content {
-	background-color: rgba(
-		0,
-		0,
-		0,
-		0.65
-	); /* Dark overlay for text readability */
-	padding: 50px;
-	border-radius: 12px;
-	max-width: 800px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 20px;
+	/* Deep Rich Green with 85% opacity for a dark overlay */
+	background-color: rgba(36, 59, 53, 0.85);
+	backdrop-filter: blur(12px); /* Frosted glass effect */
+	-webkit-backdrop-filter: blur(12px);
+	border: 1px solid rgba(183, 201, 177, 0.2); /* Subtle Moss Green border */
+	padding: 4rem 3rem;
+	border-radius: var(--border-radius-main);
+	max-width: 850px;
+	text-align: center;
+	box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+	animation: fadeIn 1s ease-out;
 }
 
 .landing-content h1 {
-	font-size: 3rem;
-	margin-bottom: 10px;
+	font-size: 3.5rem;
+	color: var(--text-main); /* Pure White */
+	margin-bottom: 1rem;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+.landing-content h1 span {
+	color: var(--text-accent); /* Light Moss highlight */
+}
+
+.title-divider {
+	width: 60px;
+	height: 3px;
+	background-color: var(--text-accent);
+	border: none;
+	margin: 0 auto 2rem auto;
+	border-radius: 2px;
+}
+
+.about-text {
+	font-size: 1.15rem;
+	line-height: 1.8;
+	color: var(--color-secondary-bg); /* Light Cream for softer reading */
+	margin-bottom: 2.5rem;
+}
+
+.about-text p {
+	margin-bottom: 1.5rem;
+}
+
+.about-text p:last-child {
+	margin-bottom: 0;
 }
 
 .get-started-btn {
-	background-color: #22c55e; /* A nice plant green */
-	color: white;
-	padding: 15px 40px;
-	text-transform: uppercase;
+	background-color: var(--btn-primary-fill); /* Moss Green */
+	color: var(--btn-primary-text); /* Deep Green */
+	padding: 16px 45px;
+	font-size: 1.2rem;
 	font-weight: bold;
-	font-size: 1.1rem;
-	border-radius: 8px;
+	border-radius: 30px; /* Modern pill shape */
 	border: none;
 	cursor: pointer;
-	transition: background-color 0.3s ease;
-	margin-top: 10px;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 15px rgba(183, 201, 177, 0.2);
 }
 
 .get-started-btn:hover {
-	background-color: #16a34a;
+	background-color: var(--color-secondary-bg); /* Hover to Light Cream */
+	transform: translateY(-3px);
+	box-shadow: 0 8px 25px rgba(241, 233, 210, 0.3);
+}
+
+/* Optional smooth fade in */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+	.landing-content {
+		padding: 2.5rem 1.5rem;
+	}
+	.landing-content h1 {
+		font-size: 2.5rem;
+	}
+	.about-text {
+		font-size: 1rem;
+	}
+}
+
+/* Mobile responsiveness (Global) */
+@media (max-width: 768px) {
+	.nav-container {
+		padding: 0 1rem;
+	}
+
+	.elevated-panel {
+		margin: 1rem;
+		padding: 2rem 1.5rem;
+	}
+
+	.category-title {
+		font-size: 1.8rem;
+	}
+
+	.responsive-grid {
+		gap: 2rem;
+	}
+
+	/* Cart stack layout */
+	.cart-content-layout {
+		flex-direction: column-reverse;
+	}
+
+	.cart-list {
+		flex: none;
+	}
+
+	.professional-row {
+		flex-direction: column;
+		text-align: center;
+		gap: 1rem;
+	}
+
+	.cart-row-controls {
+		width: 100%;
+		justify-content: space-around;
+	}
+
+	.summary-actions {
+		flex-direction: column-reverse;
+	}
 }

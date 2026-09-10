@@ -9,7 +9,10 @@ const LandingPage = () => {
 	return (
 		<div className="landing-page">
 			<div className="landing-content">
-				<h1>Paradise Nursery</h1>
+				<h1>
+					Paradise <span>Nursery</span>
+				</h1>
+				<hr className="title-divider" />
 				<AboutUs />
 				<Link to="/products">
 					<button className="get-started-btn">Get Started</button>

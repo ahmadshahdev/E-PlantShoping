@@ -1,3 +1,4 @@
+// ProductList.jsx (structure)
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../Redux/CartSlice";
@@ -7,8 +8,6 @@ import "./ProductList.css";
 
 const ProductList = () => {
 	const dispatch = useDispatch();
-
-	// Bring in the cart items so we can check if a plant is already added
 	const cartItems = useSelector((state) => state.cart.items);
 
 	const handleAddToCart = (plant) => {
@@ -16,49 +15,47 @@ const ProductList = () => {
 	};
 
 	return (
-		<div className="product-list-page">
+		<div className="product-page">
 			<Header />
-
-			<div className="products-container">
+			<div className="main-content elevated-panel">
 				{plantsData.map((group, index) => (
 					<div key={index} className="category-section">
-						<h2 className="category-title">{group.category}</h2>
-
-						<div className="product-grid">
+						<h2 className="category-title accent-moss">
+							{group.category} Collection
+						</h2>
+						<div className="product-grid responsive-grid">
 							{group.plants.map((plant) => {
-								// Check if this specific plant name exists in our Redux cart array
 								const isAdded = cartItems.some(
 									(item) => item.name === plant.name,
 								);
-
 								return (
 									<div
 										key={plant.id}
-										className="product-card"
+										className="professional-card"
 									>
-										<div className="image-container">
+										<div className="card-image-container">
 											<img
 												src={plant.image}
 												alt={plant.name}
-												className="product-image"
+												className="card-image"
 											/>
 										</div>
-										<div className="product-info">
-											<h3 className="product-name">
+										<div className="card-info">
+											<h3 className="card-name">
 												{plant.name}
 											</h3>
-											<p className="product-price">
+											<p className="card-price highlight-price">
 												${plant.price}
 											</p>
 											<button
-												className={`add-to-cart-btn ${isAdded ? "added" : ""}`}
+												className={`btn-add ${isAdded ? "added" : ""}`}
 												onClick={() =>
 													handleAddToCart(plant)
 												}
 												disabled={isAdded}
 											>
 												{isAdded
-													? "Added to Cart"
+													? "Added"
 													: "Add to Cart"}
 											</button>
 										</div>
@@ -66,10 +63,8 @@ const ProductList = () => {
 								);
 							})}
 						</div>
-
-						{/* Divider line between categories except for the last one */}
 						{index !== plantsData.length - 1 && (
-							<hr className="category-divider" />
+							<hr className="divider" />
 						)}
 					</div>
 				))}

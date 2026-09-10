@@ -1,21 +1,31 @@
+/* Header.css */
 .navbar {
+	background-color: var(--color-primary-bg);
+	padding: 1rem 0;
+	color: var(--text-main);
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	width: 100%;
+}
+
+.professional-shadow {
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 2rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: #0b132b; /* Deep abyssal blue */
-	padding: 1rem 3rem;
-	color: white;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-	position: sticky;
-	top: 0;
-	z-index: 100;
 }
 
-.brand-link {
-	color: white;
-	text-decoration: none;
-	font-size: 1.5rem;
-	letter-spacing: 1px;
+.brand-link strong {
+	color: var(--text-main);
+	font-size: 1.8rem;
+	letter-spacing: 0.5px;
 }
 
 .nav-links {
@@ -25,39 +35,39 @@
 }
 
 .nav-link {
-	color: #e0e0e0;
+	color: var(--text-main);
 	text-decoration: none;
 	font-size: 1.1rem;
-	transition: color 0.2s ease;
+	transition: var(--transition-smooth);
 }
 
 .nav-link:hover {
-	color: #00f0ff; /* Cyber cyan hover effect */
+	color: var(--text-accent);
 }
 
-.cart-container {
+.cart-link-unit {
 	position: relative;
-	color: white;
 	display: flex;
 	align-items: center;
+	color: var(--text-main);
 	text-decoration: none;
-	transition: color 0.2s ease;
+	transition: var(--transition-smooth);
 }
 
-.cart-container:hover {
-	color: #00f0ff;
+.cart-link-unit:hover {
+	color: var(--text-accent);
 }
 
 .cart-badge {
 	position: absolute;
 	top: -8px;
 	right: -12px;
-	background-color: #00f0ff; /* Cyber cyan badge */
-	color: #0b132b;
+	background-color: var(--accent-counter);
+	color: var(--text-dark);
 	font-size: 0.8rem;
 	font-weight: bold;
 	border-radius: 50%;
-	padding: 2px 6px;
-	min-width: 20px;
+	padding: 3px 7px;
+	min-width: 22px;
 	text-align: center;
 }
