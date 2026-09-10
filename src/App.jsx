@@ -2,18 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import AboutUs from "./Components/AboutUs";
 import ProductList from "./Components/ProductList";
-import Header from "./Components/Header";
+import CartItem from "./Components/CartItem";
 import "./App.css";
-
-// Keep the cart placeholder for now
-const PlaceholderCart = () => (
-	<div>
-		<Header />
-		<div style={{ padding: "50px", textAlign: "center", color: "black" }}>
-			Shopping Cart Page (Coming in Module 5)
-		</div>
-	</div>
-);
 
 const LandingPage = () => {
 	return (
@@ -35,7 +25,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/products" element={<ProductList />} />
-				<Route path="/cart" element={<PlaceholderCart />} />
+				<Route path="/cart" element={<CartItem />} />
 			</Routes>
 		</Router>
 	);
